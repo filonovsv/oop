@@ -14,19 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CommandDefineTest {
 
     @Test
-    void execute() throws InvalidCommandException, ContextEmptyStackException {
+    void execute() throws InvalidCommandException, ContextNotSetConstantException {
 
         Command command = new CommandDefine();
         Context context = new Context();
         String param = "a 5";
 
         command.execute(context, param.split(" ", 2));
+        assertEquals(context.getConstant(param.split(" ")[0]), 5.0);
 
-        Command command1 = new CommandPush();
-        param = "a";
-        command1.execute(context, param.split(" ", 2));
-        assertEquals(context.popFromStack(), 5.0);
-        String finalParam = "b";
-        assertThrows(ContextEmptyStackException.class, context::popFromStack);
     }
 }
