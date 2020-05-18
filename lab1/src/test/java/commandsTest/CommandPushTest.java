@@ -1,0 +1,5 @@
+package commandsTest;
+
+class CommandPushTest {
+
+}
