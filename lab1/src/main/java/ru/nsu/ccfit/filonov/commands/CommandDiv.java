@@ -18,6 +18,9 @@ public class CommandDiv implements Command {
         }catch(ContextEmptyStackException e){
             throw new InvalidCommandException(e.getMessage());
         }
-        context.pushToStack(a/b);
+        if (a == 0.0){
+            throw new InvalidCommandException("biv by zero");
+        }
+        context.pushToStack(b/a);
     }
 }
