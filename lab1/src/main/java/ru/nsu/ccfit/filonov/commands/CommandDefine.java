@@ -11,10 +11,16 @@ public class CommandDefine implements Command {
         if (arguments.length < 2) {
             throw new InvalidCommandException("More arguments are required for the define command");
         }
-        String str2 = null;
+
+        String str1 = arguments[0];
+        String str2 = arguments[1];
+
+        try{
+            Double.parseDouble(str1);
+            throw new InvalidCommandException("First argument not a string");
+        }catch(NumberFormatException e){}
+
         try {
-            String str1 = arguments[0];
-            str2 = arguments[1];
             double value = Double.parseDouble(str2);
             context.setConstant(str1, value);
         } catch (NumberFormatException e) {
