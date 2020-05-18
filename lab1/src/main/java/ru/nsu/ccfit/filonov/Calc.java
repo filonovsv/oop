@@ -39,8 +39,7 @@ public class Calc {
 
         Command command;
         try {
-            line = br.readLine();
-            while (line != null) {
+            while ((line = br.readLine()) != null) {
 
                 log.info("The following command was read");
 
@@ -50,6 +49,7 @@ public class Calc {
                     log.info("Received an instance of the class by command");
                 }catch (FactoryGetInstanceException e){
                     log.info("Entered an invalid command");
+                    System.out.println("Invalid command, please try again");
                     continue;
                 }
                 try {
@@ -63,7 +63,6 @@ public class Calc {
                     }
                     log.info("Execution was successful");
 
-                    line = br.readLine();
                 }catch (InvalidCommandException e){
                     log.info("This command is not valid in the current context");
                     continue;
