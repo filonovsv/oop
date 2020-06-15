@@ -59,4 +59,8 @@ public class Bot {
         return MySquares[y*10 + x];
     }
 
+    public static Square getReaction(int a){
+        return MySquares[a];
+    }
+
 }
