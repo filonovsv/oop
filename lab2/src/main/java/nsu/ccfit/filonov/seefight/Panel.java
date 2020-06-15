@@ -16,10 +16,10 @@ public class Panel extends JPanel {
     private int botKill = 0;
     private int gamerKill = 0;
     private JButton squares[] = new JButton[200];
-
+    private boolean isGod;
 
     public Panel() {
-
+        isGod = false;
         setLayout(null);
         namOfClick = 0;
         for (int x = 0; x < 10; x++) {
@@ -27,6 +27,7 @@ public class Panel extends JPanel {
                 squares[x * 10 + y] = new JButton();
                 squares[x * 10 + y].setBounds(x * 30, y * 30, 30, 30);
                 add(squares[x * 10 + y]);
+                squares[x * 10 + y].setBackground(Color.WHITE);
             }
         }
 
@@ -35,6 +36,7 @@ public class Panel extends JPanel {
                 squares[y * 10 + x + 100] = new JButton();
                 squares[y * 10 + x + 100].setBounds(x * 30 + 350, y * 30, 30, 30);
                 add(squares[y * 10 + x + 100]);
+                squares[y * 10 + x + 100].setBackground(Color.WHITE);
             }
         }
         JMenu jMenu = new JMenu("Режмы");
@@ -44,13 +46,26 @@ public class Panel extends JPanel {
         window.setJMenuBar(jMenuBar);
         JMenuItem jMenuItem = new JMenuItem("Бог");
         jMenu.add(jMenuItem);
-        jMenuItem.addActionListener(new ActionListener() {
+        jMenuItem.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i = 0; i < 100; i++) {
-                    if (Bot.getReaction(i).getClass() == SquareShip.class){
-                        if(squares[i+100].getBackground() != Color.RED) {
-                            squares[i + 100].setBackground(Color.ORANGE);
+
+                if (!isGod) {
+                    isGod = true;
+                    for (int i = 0; i < 100; i++) {
+                        if (Bot.getReaction(i).getClass() == SquareShip.class) {
+                            if (squares[i + 100].getBackground() != Color.RED) {
+                                squares[i + 100].setBackground(Color.ORANGE);
+                            }
+                        }
+                    }
+                } else {
+                    isGod = false;
+
+                    for (JButton jButton : squares) {
+
+                        if (jButton.getBackground() == Color.ORANGE) {
+                            jButton.setBackground(Color.WHITE);
                         }
                     }
                 }
@@ -58,7 +73,7 @@ public class Panel extends JPanel {
         });
 
 
-        for (JButton jButton : squares) {
+        for(JButton jButton : squares) {
             jButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
