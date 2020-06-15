@@ -16,7 +16,7 @@ public class Panel extends JPanel {
     private int botKill = 0;
     private int gamerKill = 0;
     private JButton squares[] = new JButton[200];
-    private JMenu jMenu = new JMenu("Режмы");
+
 
     public Panel() {
 
@@ -37,7 +37,7 @@ public class Panel extends JPanel {
                 add(squares[y * 10 + x + 100]);
             }
         }
-
+        JMenu jMenu = new JMenu("Режмы");
         JFrame window = Frame.getWindow();
         JMenuBar jMenuBar = new JMenuBar();
         jMenuBar.add(jMenu);
