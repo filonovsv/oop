@@ -10,14 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Panel extends JPanel {
-    private int i;
+    private int namOfClick;
     private int botKill = 0;
     private int gamerKill = 0;
     private JButton squares[] = new JButton[200];
 
     public Panel() {
         setLayout(null);
-        i = 0;
+        namOfClick = 0;
         for (int x = 0; x < 10; x++) {
             for (int y = 0; y < 10; y++) {
                 squares[x * 10 + y] = new JButton();
@@ -37,11 +37,12 @@ public class Panel extends JPanel {
             jButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (i < 20) {
-                        i++;
-                        jButton.setBackground(Color.GRAY);
-                        Gamer.placeShips(jButton.getX() / 30, jButton.getY() / 30);
-
+                    if (namOfClick < 20) {
+                        if (jButton.getX() > 300) {}else {
+                            namOfClick++;
+                            jButton.setBackground(Color.GRAY);
+                            Gamer.placeShips(jButton.getX() / 30, jButton.getY() / 30);
+                        }
                     } else {
                         if (jButton.getX() < 300) {
                         } else {
